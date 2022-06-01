@@ -1,0 +1,73 @@
+<div Class="pt-2 border-left"> <!-- class="col-4 pt-2 border-left"-->
+  <div>
+    <div>
+      <div class="d-flex flex-row-reverse">
+        <button  class="btn btn-outline-primary " (click)="setIssue(0)">
+          <span>X</span>
+        </button>
+      </div>
+      <h1>{{issue?.title}}</h1>
+      <br>
+      <p>priorityLevel: {{issue?.priorityLevel}}</p>
+      <p>Description: {{issue?.description}}</p>
+      <p>Creation Date: {{issue?.creationDate | date:'shortDate'}} </p>
+      <div *ngIf="issue.status=='Closed'">
+        <p>Closing Date: {{issue?.closingDate | date:'shortDate'}}</p>
+      </div>
+      <div class="d-flex justify-content-around pb-2">
+        <button class="btn btn-primary btn-circle btn-sm" [disabled]="issue.status=='Closed'" (click)="edit('edit')">Edit</button>
+        <button class="btn btn-primary btn-circle btn-sm" [disabled]="issue.status!='Resolved'" (click)="close()">Close</button>
+        <button class="btn btn-primary btn-circle btn-sm" [disabled]="issue.status=='Closed'" (click)="edit('aadd')">Add action point</button>
+      </div>
+      <div class="card">
+        <div class="card-header" style="background-color: #CBF1F5">
+          <strong>Actions</strong>
+        </div>
+        <div class="card-body" style="background-color: #E3FDFD" >
+          <div class="pt-2" id="actions">
+            <div *ngFor="let action of this.actions">
+                <div  class="card" id="#exp{{action.id}}">
+                  <div class="card-header" style="background-color: #CBF1F5">
+                    <div class="row">
+                      <div class="col-9">
+                        <strong>{{action.title}}</strong>
+                        <br>
+                        <strong>Status: {{action.status}}</strong>
+                      </div>
+                      <div class="col-3">
+                        <button (click)="AonSave(action.id)" type="button" class="btn btn-primary btn-circle btn-sm">Expand</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <div *ngIf="AonShow()==action.id">
+                      <div class="card-body">
+                        <p>Description: {{action.description}}</p>
+                      </div>
+                      <div>
+                        <div class="card-footer">
+                          <div class="row">
+                            <div *ngIf="action.status=='In Progress'" class="col-4">
+                              <button [disabled]="issue.status=='Closed'" (click)="sRes(action.id)" type="button" class="btn btn-success btn-circle btn-sm">Finish action</button>
+                            </div>
+                            <div *ngIf="action.status=='Open'" class="col-4">
+                              <button [disabled]="issue.status=='Closed'" (click)="sProg(action.id)" type="button" class="btn btn-success btn-circle btn-sm">Start action</button>
+                            </div>
+                            <div class="col-4">
+                              <button [disabled]="issue.status=='Closed'" (click)="eActi(action.id)" type="button" class="btn btn-outline-primary btn-circle btn-sm">Edit</button>
+                            </div>
+                            <div class="col-4">
+                              <button [disabled]="issue.status=='Closed'" (click)="dele(action.id)" type="button" class="btn btn-outline-danger btn-circle btn-sm">Delete</button>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

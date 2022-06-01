@@ -1,0 +1,21 @@
+<div>
+  <div class="card">
+    <div class="card-header" style="background-color: #CBF1F5">
+      <strong>{{this.v1}}</strong>
+    </div>
+
+    <div class="card-body bg">
+      <div *ngFor="let issue of this.issues" class="">
+        <div *ngIf="issue.status == this.v1" class="pb-2">
+          <div  class="card hcard" (click)="setIssue(issue.id)">
+            <div class="card-header" style="background-color: #CBF1F5">
+              <strong>{{issue.title}}</strong>
+              <br>
+              <strong>Priority: {{issue.priorityLevel}}</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

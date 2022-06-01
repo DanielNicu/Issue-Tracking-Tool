@@ -1,0 +1,51 @@
+<app-navbar (newItemEvent)="search($event)"
+            (newIssue)="showModal($event)"
+            (file)="showFile($event)"
+></app-navbar>
+
+  <div *ngIf=" onShow() == 0">
+    <div class="container-fluid bg" id="main-container">
+      <div class="row h-100" style="white-space: nowrap">
+          <div class="col-12 overflow-auto">
+            <br>
+            <div class="container">
+              <div class="row">
+                <div *ngFor="let prior of priority" class="col-lg-3 col-md-6 pb-2">
+                  <app-issue (newItemEvent)="addItem($event)" [s1]="key!" [v1]="prior" [reload]="reload"></app-issue>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="onShow() != 0">
+    <div class="container-fluid bg" id="main-container">
+      <div class="row h-100" style="white-space: nowrap">
+          <div class="col-md-8 overflow-auto col-sm-5">
+            <br>
+            <div class="container">
+              <div class="row">
+                <div *ngFor="let prior of priority" class="col-lg-3 col-md-6 pb-2">
+                  <app-issue (newItemEvent)="addItem($event)" [s1]="key!" [v1]="prior" [reload]="reload"></app-issue>
+                </div>
+              </div>
+            </div>
+          </div>
+        <div class="col-md-4 col-sm-7">
+          <app-sidebar (newItemEvent)="addItem($event)"
+          (reload)="re($event)"
+                        (ei)="showModal($event)"
+            [rel]="rel"
+           [v1]="onShow()"></app-sidebar>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="addIssueModal" tabindex="-1" role="dialog" aria-labelledby="addIssueModalLabel" aria-hidden="true">
+    <app-issue-modal (closeM)="closeModal($event)" [mode]="getModal()"></app-issue-modal>
+  </div>
+<div class="modal fade" id="exportModal" tabindex="-1" role="dialog" aria-labelledby="exportFileModal" aria-hidden="true">
+  <app-file-gen (closeF)="closeFile($event)" [mode]="getExport()"></app-file-gen>
+  </div>

@@ -1,0 +1,67 @@
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+   <div class="modal-header">
+     <h1 class="modal-title" id="addIssueModalLabel">Choose export type</h1>
+   </div>
+   <div class="modal-body">
+     <form (ngSubmit)="save()" #heroForm="ngForm">
+        <div class="form-group pb-2">
+          <label for="type">File type</label>
+          <select class="form-control" id="type"
+                  [(ngModel)]="model.type" name="type"
+                  required
+                  #power="ngModel">
+            <option *ngFor="let pow of filetype" [value]="pow">{{pow}}</option>
+          </select>
+        </div>
+
+      <div class="form-group">
+        <label for="sdate">Starting Date</label>
+        <div class="row pb-2">
+          <div class="col-5">
+            <input type="date" class="form-control" id="sdate1"
+                   [(ngModel)]="model.sdate1" name="sdate1">
+          </div>
+          <div class="col-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right pt-2" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path>
+</svg>
+          </div>
+          <div class="col-6">
+            <input type="date" class="form-control" id="sdate2"
+                    [(ngModel)]="model.sdate2" name="sdate2">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="cdate">Closing Date</label>
+        <div class="row pb-2">
+          <div class="col-5">
+            <input type="date" class="form-control" id="cdate1"
+                   [(ngModel)]="model.cdate1" name="cdate1">
+          </div>
+          <div class="col-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right pt-2" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path>
+            </svg>
+          </div>
+          <div class="col-6">
+            <input type="date" class="form-control" id="cdate2"
+                    [(ngModel)]="model.cdate2" name="cdate2">
+          </div>
+        </div>
+        <div *ngIf="this.show==true">
+          <div class="alert alert-danger" role="alert">
+            There are no issues in the selected time interval!
+          </div>
+        </div>
+      </div>
+       <div class="modal-footer">
+         <button [disabled]="heroForm.invalid" type="submit" class="btn btn-primary" >Save</button>
+         <button (click)="close('main')" type="button" id="add-employee-form" class="btn btn-secondary">Close</button>
+       </div>
+     </form>
+   </div>
+</div>
+</div>

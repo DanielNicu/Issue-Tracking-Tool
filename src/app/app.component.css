@@ -1,0 +1,31 @@
+.hcard:hover{
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+.border-left {
+   border-left: 1px solid #ddd;
+}
+.border-right {
+   border-right: 1px solid #ddd;
+}
+.hcard2:hover{
+   background-color: #C74B50 ;
+}
+.bg{
+  background-color: #E3FDFD;
+}
+html, body {
+    background: transparent;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+body {
+    -webkit-touch-callout: none;
+    -webkit-text-size-adjust: none;
+    -webkit-user-select: node;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: @cgiColor;
+}
